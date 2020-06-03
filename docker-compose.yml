@@ -24,7 +24,7 @@ services:
       - ./data/portainer:/data
       
   nessus:
-    build: .
+    #build: docker/.
     #Custom image name instead of letting compose do it...
     image: isaudits/nessus
     stdin_open: true
