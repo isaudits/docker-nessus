@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv bash
+
+# Default entrypoint from base image - https://github.com/SteveMcGrath/docker-nessus_scanner/blob/master/nessus_startup.sh
+nessus_startup.sh

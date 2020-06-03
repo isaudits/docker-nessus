@@ -1,0 +1,52 @@
+version: '3.6'
+
+services:
+  #Keeps containers up to date - https://containrrr.github.io/watchtower/
+  watchtower:
+    container_name: watchtower
+    hostname: watchtower
+    restart: always
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --schedule "0 0 4 * * *" --cleanup
+    
+  portainer:
+    image: portainer/portainer
+    hostname: portainer
+    container_name: portainer
+    restart: always
+    command: -H unix:///var/run/docker.sock
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/portainer:/data
+      
+  nessus:
+    build: .
+    #Custom image name instead of letting compose do it...
+    image: nessus
+    stdin_open: true
+    tty: true
+    mac_address: 00:15:5D:12:34:56
+    env_file:
+      - config/local.env
+    ports:
+      - "8834:8834"
+    volumes:
+      - ./config:/config
+      - nessus_data:/opt/nessus/var/nessus
+      
+volumes:
+  nessus_data:
+    
+    name: nessus_data
+    # Uncomment below to use local file storage instead of basic named volume
+    # Use instead of a bind mount so that container data is copied into data folder on initial launch
+    # make sure that./data/nessus exists and is empty or it will not be populated with container data!
+    #driver: local
+    #driver_opts:
+    #  o: bind
+    #  type: none
+    #  device: ${PWD}/data/nessus
