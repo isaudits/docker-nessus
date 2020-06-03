@@ -7,7 +7,7 @@ ARG S6_OVERLAY_VERSION=1.22.1.0
 ARG S6_OVERLAY_MD5HASH=3060e2fdd92741ce38928150c0c0346a
 
 # add local files
-COPY ./root/ /
+COPY root/ /
 
 RUN yum -y install wget vixie-cron crontabs && \
     yum -y clean all && \
