@@ -1,9 +1,9 @@
-# /etc/systemd/system/gvm.service
+# /etc/systemd/system/nessus.service
 
 # https://stackoverflow.com/questions/43671482/how-to-run-docker-compose-up-d-at-system-start-up
 
 [Unit]
-Description=Greenboone Vulnerability Manager Docker Compose Application Service
+Description=Nessus Docker Compose Application Service
 Requires=docker.service
 After=docker.service
 
