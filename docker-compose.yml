@@ -26,7 +26,7 @@ services:
   nessus:
     build: .
     #Custom image name instead of letting compose do it...
-    image: nessus
+    image: isaudits/nessus
     stdin_open: true
     tty: true
     mac_address: 00:15:5D:12:34:56
