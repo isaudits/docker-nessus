@@ -1,0 +1,9 @@
+#!/usr/bin/with-contenv bash
+
+setcap "cap_net_admin,cap_net_raw,cap_sys_resource+eip" /opt/nessus/sbin/nessusd
+setcap "cap_net_admin,cap_net_raw,cap_sys_resource+eip" /opt/nessus/sbin/nessus-service
+
+chmod 750 /opt/nessus/sbin/*
+chown -R abc:abc /opt/nessus
+chown -R abc:abc /config
+chown -R abc:abc /defaults

@@ -24,7 +24,7 @@ services:
       - ./data/portainer:/data
       
   nessus:
-    #build: 
+    #build: .
     image: isaudits/nessus
     stdin_open: true
     tty: true

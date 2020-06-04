@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv bash
+
+PUID=${PUID:-911}
+PGID=${PGID:-911}
+
+useradd -u $PUID -U -d /config -s /bin/false abc
+usermod -G users abc
+groupmod -o -g "$PGID" abc

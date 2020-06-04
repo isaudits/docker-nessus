@@ -4,9 +4,12 @@
 # The default cron schedule can be edited by mounting /config as a volume and tweaking the default file
 
 # add cron file for running feed updates
-[[ ! -e /config/update-cron ]] && \
-	cp /defaults/update-cron /config/update-nessus.cron
+[[ ! -e /config/update-nessus.cron ]] && \
+	cp /defaults/update-nessus.cron /config/update-nessus.cron
 
 if $SCHEDULED_UPDATES ; then
   crontab /config/update-nessus.cron
 fi
+
+chown -R abc:abc /config
+chown -R abc:abc /defaults

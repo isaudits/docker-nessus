@@ -6,7 +6,7 @@ if [ -f /opt/nessus/var/nessus/first_run ]; then
     CHECK=$(/opt/nessus/sbin/nessuscli fetch --check)
     
     if [ -n "${LICENSE}" ];then
-        echo "-- Registering as a Nessus Pro scanner"
+        echo "-- Registering as a Nessus Pro scanner and downloading updates"
         /opt/nessus/sbin/nessuscli fetch --register "${LICENSE}"
     elif [ -n "${SECURITYCENTER}" ];then
         echo "-- Registering as a SecurityCenter-linked scanner"
