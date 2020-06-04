@@ -26,6 +26,8 @@ services:
   nessus:
     #build: .
     image: isaudits/nessus
+    hostname: nessus
+    container_name: nessus
     stdin_open: true
     tty: true
     mac_address: 00:15:5D:12:34:56
