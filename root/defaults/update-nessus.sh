@@ -1,7 +1,11 @@
 #!/usr/bin/with-contenv bash
 
-# only run update at startup if scanner initialization is complete
-if [ -f /opt/nessus/var/nessus/first_run ]; then
+# Check registration status and update
+if /opt/nessus/sbin/nessuscli fetch --check; then
+    
+    /opt/nessus/sbin/nessuscli update --all
+    
+else
     
     if [ -n "${LICENSE}" ];then
         echo "-- Registering as a Nessus Pro scanner and downloading updates"
