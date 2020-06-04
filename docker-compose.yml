@@ -35,11 +35,10 @@ services:
       - "8834:8834"
     volumes:
       - ./config:/config
-      - nessus_data:/opt/nessus/var/nessus
+      - nessus_data:/opt/nessus/
       
 volumes:
   nessus_data:
-    
     name: nessus_data
     # Uncomment below to use local file storage instead of basic named volume
     # Use instead of a bind mount so that container data is copied into data folder on initial launch
