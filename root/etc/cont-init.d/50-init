@@ -56,5 +56,8 @@ if [ ! -f /opt/nessus/var/nessus/first_run ];then
 
     # Create the first_run file so that we know the initialization is complete.
     touch /opt/nessus/var/nessus/first_run
+    
+else
+    echo "Nessus is already initialized...skipping..."
 fi
 

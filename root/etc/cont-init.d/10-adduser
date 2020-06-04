@@ -1,5 +1,7 @@
 #!/usr/bin/with-contenv bash
 
+echo "Setting up user environment using UID $PUID and GID $PGID"
+
 PUID=${PUID:-911}
 PGID=${PGID:-911}
 
