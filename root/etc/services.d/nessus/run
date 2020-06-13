@@ -1,3 +1,5 @@
 #!/usr/bin/with-contenv bash
 
-s6-setuidgid abc /opt/nessus/sbin/nessus-service --no-root
+# NOTE - TEMPORARILY DISABLE NOROOT WHILE TROUBLESHOOTING SETCAP ISSUES!
+#s6-setuidgid abc /opt/nessus/sbin/nessus-service --no-root
+/opt/nessus/sbin/nessus-service
