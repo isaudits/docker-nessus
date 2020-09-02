@@ -1,4 +1,4 @@
 #!/usr/bin/with-contenv bash
 
-#/usr/sbin/cron -f -L 1
-crond -n
+/usr/sbin/cron -f -L 1
+#crond -n
