@@ -4,11 +4,16 @@
 # The default cron schedule can be edited by mounting /config as a volume and tweaking the default file
 
 # comment out PAM
-RUN sed -i -e '/pam_loginuid.so/s/^/#/' /etc/pam.d/crond
+sed -i -e '/pam_loginuid.so/s/^/#/' /etc/pam.d/crond
 
 # add cron file for running feed updates
 [[ ! -e /config/update-nessus.cron ]] && \
 	cp /defaults/update-nessus.cron /config/update-nessus.cron
+
+# Check environment variable for cron job changes and update config file
+if [ "$UPDATE_CRON" ] ; then
+  echo "${UPDATE_CRON} /bin/bash /defaults/update-nessus.sh > /dev/stdout" > /config/update-nessus.cron
+fi
 
 if $SCHEDULED_UPDATES ; then
   crontab /config/update-nessus.cron
