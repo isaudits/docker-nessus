@@ -12,7 +12,7 @@ sed -i -e '/pam_loginuid.so/s/^/#/' /etc/pam.d/crond
 
 # Check environment variable for cron job changes and update config file
 if [ "$UPDATE_CRON" ] ; then
-  echo "${UPDATE_CRON} /bin/bash /defaults/update-nessus.sh > /dev/stdout" > /config/update-nessus.cron
+  echo "${UPDATE_CRON} /bin/bash /defaults/update-nessus.sh >> /var/log/update_nessus.log" > /config/update-nessus.cron
 fi
 
 if [ "$SCHEDULED_UPDATES" ] ; then

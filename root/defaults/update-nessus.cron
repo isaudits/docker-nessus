@@ -1,1 +1,1 @@
-1 1 * * * /bin/bash /defaults/update-nessus.sh > /dev/stdout
+1 1 * * * /bin/bash /defaults/update-nessus.sh >> /var/log/update_nessus.log
