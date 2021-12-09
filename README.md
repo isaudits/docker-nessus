@@ -1,8 +1,8 @@
 # docker-nessus
 Docker implementation of Nessus scanner with s6 overlay
 
-## Description
-TODO - Coming Soon!
+## Deprecated due to release of official Tenable image
+<https://hub.docker.com/r/tenableofficial/nessus>
 
 --------------------------------------------------------------------------------
 
