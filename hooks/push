@@ -1,4 +1,1 @@
-#!/bin/bash
-set -ueo pipefail
-
-docker push isaudits/nessus:latest
+#Dummy push file to override docker hub push hook - buildx is handling image push
