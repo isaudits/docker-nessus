@@ -3,9 +3,6 @@
 # NOTE - based on https://github.com/linuxserver/docker-webgrabplus/blob/master/root/etc/cont-init.d/30-config
 # The default cron schedule can be edited by mounting /config as a volume and tweaking the default file
 
-# comment out PAM
-sed -i -e '/pam_loginuid.so/s/^/#/' /etc/pam.d/crond
-
 # add cron file for running feed updates
 [[ ! -e /config/update-nessus.cron ]] && \
 	cp /defaults/update-nessus.cron /config/update-nessus.cron

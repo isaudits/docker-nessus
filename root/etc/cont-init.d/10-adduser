@@ -5,6 +5,5 @@ echo "Setting up user environment using UID $PUID and GID $PGID"
 PUID=${PUID:-911}
 PGID=${PGID:-911}
 
-useradd -u $PUID -U -d /config -s /bin/false abc
-usermod -G users abc
 groupmod -o -g "$PGID" abc
+usermod -o -u "$PUID" abc

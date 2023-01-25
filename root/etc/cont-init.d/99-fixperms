@@ -2,8 +2,8 @@
 
 echo "Fixing permissions for non-root use"
 
-setcap "cap_net_admin,cap_net_raw,cap_sys_resource+eip" /opt/nessus/sbin/nessusd
-setcap "cap_net_admin,cap_net_raw,cap_sys_resource+eip" /opt/nessus/sbin/nessus-service
+#setcap "cap_net_admin,cap_net_raw,cap_sys_resource+eip" /opt/nessus/sbin/nessusd
+#setcap "cap_net_admin,cap_net_raw,cap_sys_resource+eip" /opt/nessus/sbin/nessus-service
 
 chmod 750 /opt/nessus/sbin/*
 chown -R abc:abc /opt/nessus
