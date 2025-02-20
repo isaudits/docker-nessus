@@ -14,12 +14,12 @@
 
 ARG NESSUS_VERSION=10.8.3
 
-FROM --platform=linux/arm64 lsiobase/ubuntu:focal as stage-arm64
+FROM --platform=linux/arm64 lsiobase/ubuntu:noble as stage-arm64
 ARG NESSUS_VERSION
 ARG FILENAME=Nessus-$NESSUS_VERSION-ubuntu1804_aarch64.deb
 
 
-FROM --platform=linux/amd64 lsiobase/ubuntu:focal as stage-amd64
+FROM --platform=linux/amd64 lsiobase/ubuntu:noble as stage-amd64
 ARG NESSUS_VERSION
 ARG FILENAME=Nessus-$NESSUS_VERSION-ubuntu1604_amd64.deb
 
