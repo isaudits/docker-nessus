@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contenv bash
 
 if [ "$UPDATE_ON_START" ] ; then
   /defaults/update-nessus.sh

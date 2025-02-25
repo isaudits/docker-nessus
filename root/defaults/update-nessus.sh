@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contenv bash
 
 # Check registration status and update
 if /opt/nessus/sbin/nessuscli fetch --check; then

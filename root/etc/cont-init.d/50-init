@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contenv bash
 
 # Logic borrowed from https://github.com/SteveMcGrath/docker-nessus_scanner/blob/master/nessus_startup.sh
 # Modified nessus pro registration to not download updates (--register-only instead of --register) since

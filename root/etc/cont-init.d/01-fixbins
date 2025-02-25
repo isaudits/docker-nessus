@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contenv bash
 
 #Fix the link that S6 Overlay blew away
 if [ ! -L "/bin" ]; then
