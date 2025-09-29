@@ -12,7 +12,7 @@
 #     tar xzf s6-overlay-amd64.tar.gz -C / && \
 #     rm -f s6-overlay-amd64.tar.gz
 
-ARG NESSUS_VERSION=10.9.3
+ARG NESSUS_VERSION=10.9.4
 
 FROM --platform=linux/arm64 lsiobase/ubuntu:noble as stage-arm64
 ARG NESSUS_VERSION
@@ -21,7 +21,7 @@ ARG FILENAME=Nessus-$NESSUS_VERSION-ubuntu1804_aarch64.deb
 
 FROM --platform=linux/amd64 lsiobase/ubuntu:noble as stage-amd64
 ARG NESSUS_VERSION
-ARG FILENAME=Nessus-$NESSUS_VERSION-ubuntu1604_amd64.deb
+ARG FILENAME=Nessus-$NESSUS_VERSION-ubuntu1804_amd64.deb
 
 
 FROM stage-${TARGETARCH} as final
