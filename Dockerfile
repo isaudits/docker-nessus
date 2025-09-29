@@ -21,7 +21,7 @@ ARG FILENAME=Nessus-$NESSUS_VERSION-ubuntu1804_aarch64.deb
 
 FROM --platform=linux/amd64 lsiobase/ubuntu:noble as stage-amd64
 ARG NESSUS_VERSION
-ARG FILENAME=Nessus-$NESSUS_VERSION-ubuntu1804_amd64.deb
+ARG FILENAME=Nessus-$NESSUS_VERSION-ubuntu1604_amd64.deb
 
 
 FROM stage-${TARGETARCH} as final
