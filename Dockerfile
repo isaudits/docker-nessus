@@ -12,7 +12,7 @@
 #     tar xzf s6-overlay-amd64.tar.gz -C / && \
 #     rm -f s6-overlay-amd64.tar.gz
 
-ARG NESSUS_VERSION=10.11.0
+ARG NESSUS_VERSION=10.11.1
 
 FROM --platform=linux/arm64 lsiobase/ubuntu:noble as stage-arm64
 ARG NESSUS_VERSION
