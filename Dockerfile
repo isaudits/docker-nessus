@@ -12,24 +12,24 @@
 #     tar xzf s6-overlay-amd64.tar.gz -C / && \
 #     rm -f s6-overlay-amd64.tar.gz
 
-ARG NESSUS_VERSION=10.12.0
+ARG NESSUS_VERSION=10.12.1
 
-FROM --platform=linux/arm64 lsiobase/ubuntu:noble as stage-arm64
+FROM --platform=linux/arm64 lsiobase/ubuntu:noble AS stage-arm64
 ARG NESSUS_VERSION
 ARG FILENAME=Nessus-$NESSUS_VERSION-ubuntu1804_aarch64.deb
 
 
-FROM --platform=linux/amd64 lsiobase/ubuntu:noble as stage-amd64
+FROM --platform=linux/amd64 lsiobase/ubuntu:noble AS stage-amd64
 ARG NESSUS_VERSION
 ARG FILENAME=Nessus-$NESSUS_VERSION-ubuntu1604_amd64.deb
 
 
-FROM stage-${TARGETARCH} as final
+FROM stage-${TARGETARCH} AS final
 ARG FILENAME
 
 RUN apt-get update && \
     apt-get dist-upgrade -y && \
-    apt-get install -y --no-install-recommends cron expect && \
+    apt-get install -y --no-install-recommends cron && \
     curl -v --request GET \
         --url https://www.tenable.com/downloads/api/v2/pages/nessus/files/$FILENAME \
         --output $FILENAME && \

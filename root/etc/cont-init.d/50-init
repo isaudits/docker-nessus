@@ -4,6 +4,8 @@
 # Modified nessus pro registration to not download updates (--register-only instead of --register) since
 # we are running update process in a later init file
 
+set -e
+
 if [ ! -f /opt/nessus/var/nessus/first_run ];then
     if [ "${NO_SYMLINK}" != "" ];then
         echo "-- Removing Symlinks to Log Files."
@@ -41,23 +43,8 @@ if [ ! -f /opt/nessus/var/nessus/first_run ];then
         /opt/nessus/sbin/nessuscli fetch --security-center
     fi
 
-    if [ ! -n "${ADMIN_PASS}" ];then
-        ADMIN_PASS=$(date | md5sum | cut -d " " -f 1)
-        echo "-----------------------------------------------------------------"
-        echo "-----------------------------------------------------------------"
-        echo "-- No Password was provided"
-        echo "-- Password for ${ADMIN_USER} has been set to ${ADMIN_PASS}"
-        echo "-----------------------------------------------------------------"
-        echo "-----------------------------------------------------------------"
-    fi
-
-    echo -e "-- Creating the administrative user based on the provided settings"
-    /usr/bin/nessus_adduser.exp "${ADMIN_USER}" "${ADMIN_PASS}" > /dev/null
-
-    # Create the first_run file so that we know the initialization is complete.
-    touch /opt/nessus/var/nessus/first_run
+    echo "-- Nessus registration complete; admin user will be created after the service initializes its database"
     
 else
     echo "Nessus is already initialized...skipping..."
 fi
-

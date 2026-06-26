@@ -1,5 +1,50 @@
 #!/command/with-contenv bash
 
+set -e
+
 # NOTE - TEMPORARILY DISABLE NOROOT WHILE TROUBLESHOOTING SETCAP ISSUES!
 #s6-setuidgid abc /opt/nessus/sbin/nessus-service --no-root
-/opt/nessus/sbin/nessus-service
+start_nessus() {
+    /opt/nessus/sbin/nessus-service &
+    nessus_pid=$!
+}
+
+stop_nessus() {
+    kill -TERM "${nessus_pid}" 2>/dev/null || true
+    wait "${nessus_pid}" 2>/dev/null || true
+}
+
+shutdown() {
+    stop_nessus
+    exit 0
+}
+
+trap shutdown TERM INT
+
+start_nessus
+
+if [ ! -f /opt/nessus/var/nessus/first_run ];then
+    ADMIN_USER=${ADMIN_USER:-admin}
+
+    if [ ! -n "${ADMIN_PASS}" ];then
+        ADMIN_PASS=$(date | md5sum | cut -d " " -f 1)
+        echo "-----------------------------------------------------------------"
+        echo "-----------------------------------------------------------------"
+        echo "-- No Password was provided"
+        echo "-- Password for ${ADMIN_USER} has been set to ${ADMIN_PASS}"
+        echo "-----------------------------------------------------------------"
+        echo "-----------------------------------------------------------------"
+    fi
+
+    echo "-- Creating the administrative user based on the provided settings"
+    /usr/bin/nessus_adduser.sh "${ADMIN_USER}" "${ADMIN_PASS}"
+
+    echo "-- Restarting Nessus service to load the first-run administrative user"
+    stop_nessus
+    start_nessus
+
+    # Create the first_run file so that we know the initialization is complete.
+    touch /opt/nessus/var/nessus/first_run
+fi
+
+wait "${nessus_pid}"
